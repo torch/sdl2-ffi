@@ -2540,6 +2540,16 @@ SDL_WINDOW_LACKS_SHAPE = -3
 };
 ]]
 
+-- surface
+ffi.cdef[[
+enum {
+SDL_SWSURFACE       = 0,
+SDL_PREALLOC        = 0x00000001,
+SDL_RLEACCEL        = 0x00000002,
+SDL_DONTFREE        = 0x00000004
+};
+]]
+
 -- video
 ffi.cdef[[
 enum {

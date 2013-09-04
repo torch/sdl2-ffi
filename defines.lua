@@ -33,12 +33,23 @@ local function registerdefines(sdl)
    end
 
    function sdl.loadWAV(file, spec, audio_buf, audio_len)
-      local f = sdl.RWFromFile(file, 'rb')
-      local wav = sdl.loadWAV_RW(f, 1, spec, audio_buf, audio_len)
-      sdl.RWClose(f)
-      return wav
+      return sdl.loadWAV_RW(SDL_RWFromFile(file, "rb"), 1, spec, audio_buf, audio_len)
    end
 
+   -- surface
+   sdl.blitSurface = sdl.upperBlit
+
+   function sdl.MUSTLOCK(S)
+      return bit.band(S.flags, sdl.SDL_RLEACCEL)
+   end
+
+   function sdl.loadBMP(file)
+      return sdl.loadBMP_RW(sdl.RWFromFile(file, 'rb'), 1)
+   end
+
+   function sdl.saveBMP(surface, file)
+      return sdl.saveBMP_RW(surface, sdl.RWFromFile(file, 'wb'), 1)
+   end
 end
 
 return registerdefines
