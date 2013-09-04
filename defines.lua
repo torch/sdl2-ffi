@@ -33,14 +33,14 @@ local function registerdefines(sdl)
    end
 
    function sdl.loadWAV(file, spec, audio_buf, audio_len)
-      return sdl.loadWAV_RW(SDL_RWFromFile(file, "rb"), 1, spec, audio_buf, audio_len)
+      return sdl.loadWAV_RW(sdl.RWFromFile(file, "rb"), 1, spec, audio_buf, audio_len)
    end
 
    -- surface
    sdl.blitSurface = sdl.upperBlit
 
    function sdl.MUSTLOCK(S)
-      return bit.band(S.flags, sdl.SDL_RLEACCEL)
+      return bit.band(S.flags, sdl.RLEACCEL)
    end
 
    function sdl.loadBMP(file)
