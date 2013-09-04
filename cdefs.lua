@@ -2372,6 +2372,13 @@ SDL_INIT_EVERYTHING     = ( \
 
 ffi.cdef[[
 enum {
+SDL_AUDIO_MASK_BITSIZE       = (0xFF),
+SDL_AUDIO_MASK_DATATYPE      = (1<<8),
+SDL_AUDIO_MASK_ENDIAN        = (1<<12),
+SDL_AUDIO_MASK_SIGNED        = (1<<15)
+};
+
+enum {
 SDL_AUDIO_U8        = 0x0008,
 SDL_AUDIO_S8        = 0x8008,
 SDL_AUDIO_U16LSB    = 0x0010,

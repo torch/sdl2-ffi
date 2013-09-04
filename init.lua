@@ -1,4 +1,6 @@
 local ffi = require 'ffi'
+local registerdefines = require 'defines'
+
 local C = ffi.load('SDL2')
 local sdl = {}
 
@@ -132,10 +134,10 @@ register('waitThread', 'SDL_WaitThread')
 register('tLSCreate', 'SDL_TLSCreate')
 register('tLSGet', 'SDL_TLSGet')
 register('tLSSet', 'SDL_TLSSet')
-register('rWFromFile', 'SDL_RWFromFile')
-register('rWFromFP', 'SDL_RWFromFP')
-register('rWFromMem', 'SDL_RWFromMem')
-register('rWFromConstMem', 'SDL_RWFromConstMem')
+register('RWFromFile', 'SDL_RWFromFile')
+register('RWFromFP', 'SDL_RWFromFP')
+register('RWFromMem', 'SDL_RWFromMem')
+register('RWFromConstMem', 'SDL_RWFromConstMem')
 register('allocRW', 'SDL_AllocRW')
 register('freeRW', 'SDL_FreeRW')
 register('readU8', 'SDL_ReadU8')
@@ -530,6 +532,8 @@ register('wasInit', 'SDL_WasInit')
 register('quit', 'SDL_Quit')
 register('registerApp', 'SDL_RegisterApp')
 register('unregisterApp', 'SDL_UnregisterApp')
+
+registerdefines(sdl)
 
 return sdl
 
