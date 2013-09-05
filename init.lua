@@ -1,3 +1,6 @@
+-- Do not change this file manually
+-- Generated with dev/create-init.lua
+
 local ffi = require 'ffi'
 local C = ffi.load('SDL2')
 local sdl = {}

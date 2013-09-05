@@ -1,3 +1,8 @@
+-- Cut and paste from the C preprocessor output
+-- Removed inline/defined functions which are not supported by luajit
+-- Instead, those are defined into defines.lua
+-- Note there are some tests here and there to stay cross-platform
+
 local ffi = require 'ffi'
 
 ffi.cdef[[

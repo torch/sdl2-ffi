@@ -1,3 +1,6 @@
+-- Function definitions which were not output by
+-- the C preprocessor
+
 local sdl
 
 local function registerdefines(sdl)
