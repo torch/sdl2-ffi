@@ -4,9 +4,9 @@
 local ffi = require 'ffi'
 local C = ffi.load('SDL2')
 local sdl = {}
-local registerdefines = require 'defines'
+local registerdefines = require 'sdl2.defines'
 
-require 'cdefs'
+require 'sdl2.cdefs'
 
 local function register(luafuncname, funcname)
    local symexists, msg = pcall(function()
