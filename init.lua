@@ -3,7 +3,7 @@
 
 local ffi = require 'ffi'
 local C = ffi.load('SDL2')
-local sdl = {}
+local sdl = {C=C}
 local registerdefines = require 'sdl2.defines'
 
 require 'sdl2.cdefs'
@@ -1487,4 +1487,3 @@ register('WINDOWPOS_CENTERED', 'SDL_WINDOWPOS_CENTERED')
 registerdefines(sdl)
 
 return sdl
-
