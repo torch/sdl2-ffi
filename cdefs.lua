@@ -2483,9 +2483,9 @@ SDL_KMOD_GUI = (SDL_KMOD_LGUI|SDL_KMOD_RGUI)
 -- main
 if jit.os == 'Windows' then
    ffi.cdef[[
-int SDLCALL SDL_RegisterApp(char *name, Uint32 style,
-                                            void *hInst);
-void SDLCALL SDL_UnregisterApp(void);
+int SDL_RegisterApp(char *name, Uint32 style,
+                    void *hInst);
+void SDL_UnregisterApp(void);
    ]]
 end
 
