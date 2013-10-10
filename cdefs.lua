@@ -196,8 +196,43 @@ typedef enum {
     SDL_THREAD_PRIORITY_HIGH
 } SDL_ThreadPriority;
 typedef int ( * SDL_ThreadFunction) (void *data);
+]]
+
+if jit.os == 'Windows' then
+  ffi.cdef[[
+
+typedef uintptr_t (*pfnSDL_CurrentBeginThread) (void *, unsigned,
+						unsigned (*func)(void*),
+						void *arg, unsigned,
+						unsigned *threadID);
+
+typedef void (*pfnSDL_CurrentEndThread) (unsigned code);
+
+uintptr_t _beginthreadex(void *, unsigned,
+			 unsigned (*func)(void*),
+			 void *arg, unsigned,
+			 unsigned *threadID);
+
+void _endthreadex(unsigned retval);
+
+/* note: this fails. why?
+   pfnSDL_CurrentBeginThread _beginthreadex;
+   pfnSDL_CurrentEndThread _endthreadex;
+*/
+
+SDL_Thread *
+SDL_CreateThread(SDL_ThreadFunction fn, const char *name, void *data,
+                 pfnSDL_CurrentBeginThread pfnBeginThread,
+                 pfnSDL_CurrentEndThread pfnEndThread);
+]]
+else
+  ffi.cdef[[
 SDL_Thread *
 SDL_CreateThread(SDL_ThreadFunction fn, const char *name, void *data);
+]]
+end
+
+ffi.cdef[[
 const char * SDL_GetThreadName(SDL_Thread *thread);
 SDL_threadID SDL_ThreadID(void);
 SDL_threadID SDL_GetThreadID(SDL_Thread * thread);

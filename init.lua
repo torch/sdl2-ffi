@@ -127,7 +127,16 @@ register('condSignal', 'SDL_CondSignal')
 register('condBroadcast', 'SDL_CondBroadcast')
 register('condWait', 'SDL_CondWait')
 register('condWaitTimeout', 'SDL_CondWaitTimeout')
-register('createThread', 'SDL_CreateThread')
+
+if jit.os == 'Windows' then
+  sdl.createThread =
+    function(fn, name, data)
+      return C.SDL_CreateThread(fn, name, data, ffi.C._beginthreadex, ffi.C._endthreadex)
+    end
+else
+  register('createThread', 'SDL_CreateThread')
+end
+
 register('getThreadName', 'SDL_GetThreadName')
 register('threadID', 'SDL_ThreadID')
 register('getThreadID', 'SDL_GetThreadID')
