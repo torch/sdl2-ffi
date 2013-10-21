@@ -2,7 +2,7 @@ package = "sdl2"
 version = "scm-1"
 
 source = {
-   url = "git://github.com/andresy/sdl2-ffi.git"
+   url = "git://github.com/torch/sdl2-ffi.git"
 }
 
 description = {
@@ -10,7 +10,7 @@ description = {
    detailed = [[
    See http://libsdl.org for more details.
    ]],
-   homepage = "https://github.com/andresy/sdl2-ffi",
+   homepage = "https://github.com/torch/sdl2-ffi",
    license = "BSD"
 }
 
