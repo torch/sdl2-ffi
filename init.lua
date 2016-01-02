@@ -128,7 +128,7 @@ register('condBroadcast', 'SDL_CondBroadcast')
 register('condWait', 'SDL_CondWait')
 register('condWaitTimeout', 'SDL_CondWaitTimeout')
 
-if jit.os == 'Windows' then
+if ffi.os == 'Windows' then
   sdl.createThread =
     function(fn, name, data)
       return C.SDL_CreateThread(fn, name, data, ffi.C._beginthreadex, ffi.C._endthreadex)

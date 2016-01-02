@@ -198,7 +198,7 @@ typedef enum {
 typedef int ( * SDL_ThreadFunction) (void *data);
 ]]
 
-if jit.os == 'Windows' then
+if ffi.os == 'Windows' then
   ffi.cdef[[
 
 typedef uintptr_t (*pfnSDL_CurrentBeginThread) (void *, unsigned,
@@ -2516,7 +2516,7 @@ SDL_KMOD_GUI = (SDL_KMOD_LGUI|SDL_KMOD_RGUI)
 ]]
 
 -- main
-if jit.os == 'Windows' then
+if ffi.os == 'Windows' then
    ffi.cdef[[
 int SDL_RegisterApp(char *name, Uint32 style,
                     void *hInst);
