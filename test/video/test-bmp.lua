@@ -15,10 +15,12 @@ local windowsurface = sdl.getWindowSurface(window)
 
 local image = sdl.loadBMP("lena.bmp")
 
-sdl.upperBlit(image, nil, windowsurface, nil)
+-- moved inside the loop
+--- sdl.upperBlit(image, nil, windowsurface, nil)
+--- sdl.updateWindowSurface(window)
 
-sdl.updateWindowSurface(window)
-sdl.freeSurface(image)
+-- moved at the end
+--- sdl.freeSurface(image)
 
 local running = true
 local event = ffi.new('SDL_Event')
@@ -28,7 +30,15 @@ while running do
          running = false
       end
    end
+
+   -- added
+   sdl.upperBlit(image, nil, windowsurface, nil)
+   sdl.updateWindowSurface(window)
+
 end
+
+-- added
+sdl.freeSurface(image)
 
 sdl.destroyWindow(window)
 sdl.quit()
