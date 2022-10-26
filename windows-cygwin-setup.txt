@@ -1,0 +1,41 @@
+# install cygwin and ...
+# - curl
+# - wget
+# - gcc-core
+# - git
+# - make
+# - unzip
+# ... in it (via setup.exe)
+
+# install luajit (required below)
+git clone https://luajit.org/git/luajit.git
+cd ~/luajit && make && make install
+ln -sf luajit-2.1.0-beta3 /usr/local/bin/luajit # version?
+which luajit
+cp ~/luajit/src/cyglua51.dll /usr/bin
+luajit -v
+
+cd ~ && ls
+
+# install luarocks (required below)
+cd ~/luarocks-3.9.1 && ls
+./configure && make && make install
+which luarocks
+luarocks-admin
+mkdir ~/.luarocks
+luarocks config variables.LUALIB "libluajit-5.1.dll.a" # for luarocks config variables.LUA_LIBDIR
+luarocks config variables.LUA_LIBDIR ~/luajit/src
+luarocks-admin
+
+cd ~ && ls
+
+# requires: luarocks
+# install luajit-ffi-sdl : "arkenidar/lua-sdl2-ffi-luajit"
+luarocks install https://raw.githubusercontent.com/arkenidar/lua-sdl2-ffi-luajit/master/rocks/sdl2-scm-1.rockspec
+# install SDL redistributable
+cp ~/SDL2.dll /usr/bin/cygSDL2.dll # from website libsdl.org
+
+# requires: luajit
+# test video feature by showing an image
+git clone https://github.com/arkenidar/lua-sdl2-ffi-luajit
+cd ~/lua-sdl2-ffi-luajit/test/video/ && luajit test-bmp.lua # works!
